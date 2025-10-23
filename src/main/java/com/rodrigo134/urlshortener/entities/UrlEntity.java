@@ -1,13 +1,12 @@
 package com.rodrigo134.urlshortener.entities;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Document(collection = "urls")// nome da coleção no Mongo
+@Document(collection = "urls")
 public class UrlEntity {
 
     @Id
@@ -15,15 +14,14 @@ public class UrlEntity {
 
     private String fullUrl;
 
-    @Indexed(expireAfter = "3600s")
+    @Indexed(expireAfter = "300")
     private LocalDateTime expiresAt;
 
-
     public UrlEntity() {
-
     }
 
     public UrlEntity(String id, String fullUrl, LocalDateTime expiresAt) {
+        this.id = id;
         this.fullUrl = fullUrl;
         this.expiresAt = expiresAt;
     }
